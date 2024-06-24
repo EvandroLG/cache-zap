@@ -1,4 +1,4 @@
-# cache-zap
+# cache-zap &middot; [![license](https://badgen.now.sh/badge/license/MIT)](./LICENSE)
 
 A cache that stores key-value pairs with a time limit for each entry.
 
