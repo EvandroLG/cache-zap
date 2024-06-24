@@ -1,6 +1,6 @@
 /**
  * A cache that stores key-value pairs with a time limit for each entry.
- * 
+ *
  * @template K - The type of keys used in the cache.
  * @template V - The type of values stored in the cache.
  */
@@ -40,8 +40,8 @@ class CacheZap<K, V> {
   public size(): number {
     let count = 0;
 
-    for (const [_, [__, expires]] of this.cache) {
-      if (expires > Date.now()) {
+    for (const [, [, expires]] of this.cache) {
+      if (expires < Date.now()) {
         count++;
       }
     }
