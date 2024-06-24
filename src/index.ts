@@ -33,6 +33,24 @@ class CacheZap<K, V> {
   }
 
   /**
+   * Deletes a value from the cache.
+   *
+   * @param {K} key - The key to identify the cache entry.
+   * @returns {boolean} True if the entry was deleted, otherwise false.
+   * @returns {boolean} True if the entry was deleted, otherwise false.
+   */
+  public delete(key: K): boolean {
+    return this.cache.delete(key);
+  }
+
+  /**
+   * Clears the cache of all entries.
+   */
+  public clear(): void {
+    this.cache.clear();
+  }
+
+  /**
    * Returns the number of valid (non-expired) entries in the cache.
    *
    * @returns {number} The number of valid entries in the cache.

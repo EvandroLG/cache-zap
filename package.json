@@ -36,9 +36,10 @@
     "typescript": "^5.5.2"
   },
   "lint-staged": {
-    "*.{ts}": [
+    "*.ts": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --write",
+      "npm test -- --findRelatedTests"
     ]
   }
 }
