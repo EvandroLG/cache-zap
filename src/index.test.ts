@@ -26,7 +26,8 @@ describe('CacheZap', () => {
     const cache = new CacheZap<string, number>();
     cache.set('key1', 100, 1000);
     cache.set('key2', 200, 1);
-    jest.advanceTimersByTime(2); // Fast-forward time to expire 'key2'
+    cache.set('key3', 300, 2);
+    jest.advanceTimersByTime(3); // Fast-forward time to expire 'key2'
 
     expect(cache.size()).toBe(1);
   });

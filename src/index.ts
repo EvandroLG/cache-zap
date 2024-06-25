@@ -59,7 +59,7 @@ class CacheZap<K, V> {
     let count = 0;
 
     for (const [, [, expires]] of this.cache) {
-      if (expires < Date.now()) {
+      if (expires > Date.now()) {
         count++;
       }
     }
