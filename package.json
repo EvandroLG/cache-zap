@@ -1,6 +1,6 @@
 {
   "name": "cache-zap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A cache that stores key-value pairs with a time limit for each entry.",
   "source": "src/index.ts",
   "exports": {
