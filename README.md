@@ -52,7 +52,7 @@ Clear all entries.
 
 #### size(): number
 
-Get the number of entries.
+Returns the number of valid (non-expired) entries in the cache.
 
 ## License
 
