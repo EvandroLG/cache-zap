@@ -11,8 +11,17 @@ describe('CacheZap', () => {
 
   test('raises an error if the duration is less than 1', () => {
     const cache = new CacheZap<string, number>();
+
     expect(() => {
       cache.set('key1', 100, 0);
+    }).toThrow('Duration must be a positive number.');
+
+    expect(() => {
+      cache.set('key1', 100, -1);
+    }).toThrow('Duration must be a positive number.');
+
+    expect(() => {
+      cache.set('key1', 100, -100);
     }).toThrow('Duration must be a positive number.');
   });
 
