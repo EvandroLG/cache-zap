@@ -15,6 +15,10 @@ class CacheZap<K, V> {
    * @param {number} duration - The duration in milliseconds for which the entry should be valid.
    */
   public set(key: K, value: V, duration: number) {
+    if (duration <= 0) {
+      throw new Error('Duration must be a positive number.');
+    }
+
     this.cache.set(key, [value, Date.now() + duration]);
   }
 
@@ -27,9 +31,12 @@ class CacheZap<K, V> {
   public get(key: K): V | undefined {
     const [value, expires] = this.cache.get(key) || [];
 
-    if (expires && expires > Date.now()) {
-      return value;
+    if (expires && expires <= Date.now()) {
+      this.cache.delete(key);
+      return undefined;
     }
+
+    return value;
   }
 
   /**
@@ -45,9 +52,29 @@ class CacheZap<K, V> {
 
   /**
    * Clears the cache of all entries.
+   *
+   * @returns {void}
    */
   public clear(): void {
     this.cache.clear();
+  }
+
+  /**
+   * Checks if a key exists in the cache and is not expired.
+   *
+   * @param {K} key - The key to check in the cache.
+   * @returns {boolean} True if the key exists and is valid, otherwise false.
+   */
+  public has(key: K): boolean {
+    const entry = this.cache.get(key);
+
+    if (!entry) {
+      return false;
+    }
+
+    const [, expires] = entry;
+
+    return expires > Date.now();
   }
 
   /**
@@ -58,11 +85,11 @@ class CacheZap<K, V> {
   public size(): number {
     let count = 0;
 
-    for (const [, [, expires]] of this.cache) {
+    this.cache.forEach(([, expires]) => {
       if (expires > Date.now()) {
-        count++;
+        count += 1;
       }
-    }
+    });
 
     return count;
   }

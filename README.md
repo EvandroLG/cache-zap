@@ -26,7 +26,7 @@ setTimeout(() => {
 
 ## API
 
-#### set(key: K, value: V, duration: number): void
+### set(key: K, value: V, duration: number): void
 
 Set a key-value pair with a time limit for the entry.
 
@@ -34,23 +34,29 @@ Set a key-value pair with a time limit for the entry.
 - `value`: The value of the entry.
 - `duration`: The duration in milliseconds for which the entry should be valid.
 
-#### get(key: K): V | undefined
+### get(key: K): V | undefined
 
 Get the value of an entry.
 
 - `key`: The key of the entry.
 
-#### delete(key: K): boolean
+### has(key: K): boolean
+
+Check if an entry exists and is not expired.
+
+- `key`: The key of the entry.
+
+### delete(key: K): boolean
 
 Delete an entry.
 
 - `key`: The key of the entry.
 
-#### clear(): void
+### clear(): void
 
 Clear all entries.
 
-#### size(): number
+### size(): number
 
 Returns the number of valid (non-expired) entries in the cache.
 
